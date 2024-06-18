@@ -38,6 +38,30 @@ while True:
             player_hand.append(deal_card())
         elif action == "stand":
             break
+
+    if is_bust(player_hand):
+        show_hand(dealer_hand)
+        print('Dealer wins!')
+    else:
+        while total(dealer_hand) < 17:
+            dealer_hand.append(deal_card())
+
+        if is_bust(dealer_hand):
+            show_hand(dealer_hand)
+            print('Player wins!')
+        else:
+            show_hand(dealer_hand)
+            if total(player_hand) > total(dealer_hand):
+                print('Player wins!')
+            elif total(player_hand) < total(dealer_hand):
+                print('Dealer wins!')
+            else:
+                print('Tie game!')
+
+    if not play_again():
+        break
+
+print('Goodbye!')
         
 
 
